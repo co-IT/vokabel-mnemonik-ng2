@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { VocablesService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+
+  constructor(private vocables: VocablesService) {
+      this.vocables.useApiGateways();
+  }
 }
