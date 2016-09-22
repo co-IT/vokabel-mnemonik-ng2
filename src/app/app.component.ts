@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { VocablesService } from './services';
+import { ApiGatewaysService } from './services';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,11 @@ import { VocablesService } from './services';
 })
 export class AppComponent {
   title = 'app works!';
+  links: Array<string>;
 
-  constructor(private vocables: VocablesService) {
-      this.vocables.useApiGateways();
+  constructor(private apis: ApiGatewaysService) {
+    this.links = [];
+    this.apis.allLinks
+             .subscribe(links => this.links = links);
   }
 }
